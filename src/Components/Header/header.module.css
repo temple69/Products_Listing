@@ -1,0 +1,22 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color: aqua;
+    height: 50px;
+    padding: 0 1em;
+}
+
+.header>nav {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+
+.header>nav>button {
+    border: none;
+    outline: none;
+    background-color: greenyellow;
+    height: 35px;
+    width: 150px;
+}
