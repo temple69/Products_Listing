@@ -1,0 +1,40 @@
+        .productCon {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1em;
+        }
+        
+        .product {
+            margin: 1em;
+        }
+        
+        .productCon>div>figure>img {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .productCon>div>article {
+            display: flex;
+            gap: 1em;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .productCon>div>article>button {
+            background-color: greenyellow;
+            border: none;
+            outline: none;
+            height: 30px;
+            border-radius: 10px;
+            padding: 0em 1em;
+            cursor: pointer;
+        }
+        
+        .productCon>div {
+            background-color: white;
+            box-shadow: 2px 4px 4px inset;
+            padding: 0 1em;
+            height: 100%;
+            text-align: center;
+            padding: 1em;
+        }
