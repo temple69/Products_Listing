@@ -1,6 +1,6 @@
 .productCon {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1em;
 }
 
@@ -23,6 +23,17 @@
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
+    padding: 1em;
+    flex-direction: column;
+}
+
+.product>span {
+    display: inline-block;
+    font-size: 28px;
+    color: red;
+    text-align: right;
+    cursor: pointer;
+    margin-top: 2em;
 }
 
 .productCon>div>figure>img {
@@ -49,6 +60,20 @@
 .productCon>div {
     background-color: white;
     box-shadow: 2px 4px 4px inset;
-    padding: 0 1em;
-    height: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    text-align: center;
+}
+
+.flex {
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    color: greenyellow;
+    width: 500px;
+    align-items: center;
+    position: relative;
 }

@@ -2,14 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./cart.module.css";
 
-const Cart = ({ cartItems, onRemoveFromCart }) => {
-  const { productCon, product } = style;
+const Cart = ({ cartItems, onRemoveFromCart,closeCart }) => {
+  const { productCon, product,flex} = style;
 
   return (
     <section className={product}>
+      <span onClick={closeCart}>X</span>
       <div className={productCon}>
         {cartItems.length === 0 ? (
-          <p>No items added to cart</p>
+          <article className={flex}>
+            <p>No items added to cart</p>
+            
+
+          </article>
+          
         ) : (
           cartItems.map((item) => (
             <div key={item.id}>
