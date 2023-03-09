@@ -14,6 +14,9 @@ const Home = () => {
   const showCartHandler=()=>{
     setShowCart(true)
   }
+  const hideCartHandler=()=>{
+    setShowCart(false)
+  }
   
   
 
@@ -23,7 +26,7 @@ const Home = () => {
     <main>
       <ProductList products={products} />
       {showCart?<Cart cartItems={CartItems}
-      onRemoveFromCart={removeFromCart}/>:""}
+      onRemoveFromCart={removeFromCart} closeCart={hideCartHandler}/>:""}
     </main>
     </>
   );
