@@ -81,7 +81,7 @@ export const CartContextProvider = ({ children }) => {
   };
   useEffect(() => {
     getCartDetails();
-    localStorage.clear()
+    
   
   }, []);
   
