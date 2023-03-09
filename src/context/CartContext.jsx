@@ -9,42 +9,59 @@ export const CartContext = React.createContext({
 });
 
 export const CartContextProvider = ({ children }) => {
-  const [CartItems, setCartItems] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-
+  const [cartDetails, setCartDetail] = useState({
+    CartItems: [],
+    totalItems: 0,
+  });
+  const { CartItems, totalItems } = cartDetails;
 
   const products = useFetch();
   //This function finds a product by id and adds the found product to cart
   const setCartDetails = (cart, total) => {
+
     localStorage.setItem("CartItems", JSON.stringify(cart));
     localStorage.setItem("total", JSON.stringify(total));
   };
 
   const addToCartHandler = (id) => {
     let newCartItem = products.find((product) => product.id === id);
-    setCartItems((prevData) => {
-      if (prevData.includes(newCartItem)) {
-        setCartDetails(prevData);
+    setCartDetail((prevData) => {
+      const { CartItems, totalItems } = prevData;
+
+      if (CartItems.includes(newCartItem)) {
+        setCartDetails(CartItems, totalItems);
         return prevData;
       } //increments the total items in cart when add to cart is clicked
+      else{
       let incrementCartTotal = totalItems + 1;
-      setTotalItems(incrementCartTotal);
-      setCartDetails([...prevData, newCartItem], incrementCartTotal);
+      if (CartItems.includes(newCartItem)){
+        return prevData
+      }
+      setCartDetails([...CartItems, newCartItem], incrementCartTotal);
+      return {
+        ...prevData,
+        CartItems: [...CartItems, newCartItem],
+        totalItems: incrementCartTotal,
+        
+      };
+      }
 
-      return [...prevData, newCartItem];
+      
     });
   };
   //This function finds a product by id and removes the found product from cart
   const removeFromCartHandler = (id) => {
     let decrementCartTotal = totalItems - 1;
-    setTotalItems(decrementCartTotal);
-    setCartItems((prevData) => {
-      let deletedCartItem = prevData.filter((product) => product.id !== id);
+    setCartDetail((prevData) => {
+      let deletedCartItem = prevData.CartItems.filter((product) => product.id !== id);
       setCartDetails(deletedCartItem, decrementCartTotal);
-      return deletedCartItem;
+      return {
+        ...prevData,
+        CartItems: deletedCartItem,
+        totalItems: decrementCartTotal,
+      };
     });
   };
-
 
   const getCartDetails = () => {
     if (localStorage.getItem("CartItems") === null) {
@@ -52,16 +69,22 @@ export const CartContextProvider = ({ children }) => {
     } else {
       const cartData = JSON.parse(localStorage.getItem("CartItems"));
       const total = JSON.parse(localStorage.getItem("total"));
-      setCartItems(cartData);
-      setTotalItems(total);
+
+      setCartDetail((prevData) => {
+        return {
+          ...prevData,
+          CartItems: cartData,
+          totalItems: total,
+        };
+      });
     }
   };
   useEffect(() => {
     getCartDetails();
     localStorage.clear()
   
-    
-  }, [getCartDetails]);
+  }, []);
+  
 
   const cartData = {
     CartItems,
