@@ -4,6 +4,7 @@
     background-color: aqua;
     height: 50px;
     padding: 0 1em;
+    z-index: 2;
 }
 
 .header>nav {
