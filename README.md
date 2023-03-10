@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-Product Listing ecommerce store
+Product Listing ecommerce store test for junior fullstack developer role
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
